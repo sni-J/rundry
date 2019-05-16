@@ -1,0 +1,199 @@
+body {
+  min-height: 75rem;
+}
+
+.sparcs-nav {
+  border-style: solid;
+  border-width: 0px;
+  border-top-width: 5px;
+  padding: 11px 24px 12px 24px!important;
+}
+
+.sparcs-nav a{
+  color: #333;
+}
+
+.sparcs-nav .navbar-brand {
+  margin: 0px;
+  height: 27px;
+  padding: 0px;
+}
+
+.sparcs-nav .sparcs-nav-item:not(:last-child) {
+  margin-right: 24px;
+
+}
+
+.sparcs-nav .sparcs-nav-item .sparcs-nav-link {
+  padding: 6px 0px!important;
+  font-size: 15px;
+  display:block;
+  line-height: 1em;
+}
+
+.sparcs-nav .sparcs-nav-link:hover {
+  color: #3388bb;
+  text-decoration: none;
+}
+
+.sparcs-collapse {
+  margin-left:4rem;
+}
+
+.sparcs-main {
+  margin-top: 15px;
+}
+
+.proj-nav {
+  border-color: #3388bb;
+  background-color: #f6ffff;
+}
+
+.nav-link {
+  color: #333;
+}
+
+div[class *= "col-"] {
+  padding: 4px 8px;
+}
+
+input[type = "number"] {
+  width: 60px;
+  text-align: right;
+}
+
+.list-tab-pane {
+  padding-top: 15px;
+}
+
+
+.form-signin {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group > input,
+.form-label-group > select,
+.form-label-group > label {
+  height: 3.125rem;
+  padding: .75rem;
+}
+
+.form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0; /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  pointer-events: none;
+  cursor: text; /* Match the input under the label */
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+.form-label-group > .label-right {
+  left:auto;
+  right:0;
+  text-align: right;
+}
+
+.form-label-group input::-webkit-input-placeholder,
+.form-label-group select::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder,
+.form-label-group select:-ms-input-placeholder{
+  color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-moz-placeholder.
+.form-label-group select::-moz-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::placeholder,
+.form-label-group select::placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown),
+.form-label-group select:not(:placeholder-shown) {
+  padding-top: 1.25rem;
+  padding-bottom: .25rem;
+}
+
+.form-label-group input:not(:placeholder-shown) ~ label,
+.form-label-group select:not(:placeholder-shown) ~ label {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Fallback for Edge
+-------------------------------------------------- */
+@supports (-ms-ime-align: auto) {
+  .form-label-group > label {
+    display: none;
+  }
+  .form-label-group input::-ms-input-placeholder,
+  .form-label-group select::-ms-input-placeholder {
+    color: #777;
+  }
+}
+
+/* Fallback for IE
+-------------------------------------------------- */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .form-label-group > label {
+    display: none;
+  }
+  .form-label-group input:-ms-input-placeholder,
+  .form-label-group select:-ms-input-placeholder {
+    color: #777;
+  }
+}
+
+.signup {
+  padding: 1em;
+  text-align: center;
+  align-items: center;
+}
+
+.signup a{
+  text-decoration: underline;
+  color: #333;
+}
+
+
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}

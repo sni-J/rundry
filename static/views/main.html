@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Main</title>
+    <link href="common.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light sparcs-nav proj-nav">
+      <a class="navbar-brand" href="#">Untitled</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse sparcs-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active sparcs-nav-item">
+            <a class="sparcs-nav-link" href="/main">세탁기/건조기 상태<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item sparcs-nav-item">
+            <a class="sparcs-nav-link" href="#">정보 수정</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item sparcs-nav-item">
+            <a class="sparcs-nav-link" href="#">이원준</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container sparcs-main">
+      <h5>소망관</h5>
+      <form id="useForm">
+        <input type="text" hidden id="useID" name="id"></input>
+        <input type="text" hidden id="useUserID" name="user_id" value="20190480"></input>
+        <input type="text" hidden id="useStartTime" name="start_time"></input>
+        <input type="text" hidden id="useEndTime" name="sch_end_time"></input>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between text-center">
+              <h6 class="my-auto">5층</h6>
+              <ul class="nav nav-pills" id="somang5" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang5W1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기1</h6>
+                      <small class="my-auto">수거 미확인</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang5W2" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기2</h6>
+                      <small class="my-auto">01:32 남음</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang5D1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">건조기1</h6>
+                      <small class="my-auto">사용 가능</small>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content" id="somang5-contents">
+              <div id="somang5W1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-warning">&#11044; </span>
+                        수거 미확인
+                      </div>
+                      <button id="somang5W1freeBtn" class="col-md-1 btn btn-primary">수거</button>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang5W2" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-danger">&#11044; </span>
+                        사용 중 (01:32 남음)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang5D1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">상태</div>
+                      <div class="col-md-7"><span class="text-success">&#11044; </span>사용 가능</div>
+                      <button id="somang5D1useForm" class="col-md-1 btn btn-primary">사용</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between text-center">
+              <h6 class="my-auto">4층</h6>
+              <ul class="nav nav-pills" id="somang4" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang4W1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기1</h6>
+                      <small class="my-auto">수거 미확인</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang4W2" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기2</h6>
+                      <small class="my-auto">01:32 남음</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang4D1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">건조기1</h6>
+                      <small class="my-auto">사용 가능</small>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content" id="somang4-contents">
+              <div id="somang4W1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-warning">&#11044; </span>
+                        수거 미확인
+                      </div>
+                      <button id="somang4W1freeBtn" class="col-md-1 btn btn-primary">수거</button>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang4W2" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-danger">&#11044; </span>
+                        사용 중 (01:32 남음)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang4D1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">상태</div>
+                      <div class="col-md-7"><span class="text-success">&#11044; </span>사용 가능</div>
+                      <button id="somang4D1useForm" class="col-md-1 btn btn-primary">사용</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between text-center">
+              <h6 class="my-auto">3층</h6>
+              <ul class="nav nav-pills" id="somang3" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang3W1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기1</h6>
+                      <small class="my-auto">수거 미확인</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang3W2" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기2</h6>
+                      <small class="my-auto">01:32 남음</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang3D1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">건조기1</h6>
+                      <small class="my-auto">사용 가능</small>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content" id="somang3-contents">
+              <div id="somang3W1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-warning">&#11044; </span>
+                        수거 미확인
+                      </div>
+                      <button id="somang3W1freeBtn" class="col-md-1 btn btn-primary">수거</button>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang3W2" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-danger">&#11044; </span>
+                        사용 중 (01:32 남음)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang3D1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">상태</div>
+                      <div class="col-md-7"><span class="text-success">&#11044; </span>사용 가능</div>
+                      <button id="somang3D1useForm" class="col-md-1 btn btn-primary">사용</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between text-center">
+              <h6 class="my-auto">2층</h6>
+              <ul class="nav nav-pills" id="somang2" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang2W1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기1</h6>
+                      <small class="my-auto">수거 미확인</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang2W2" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기2</h6>
+                      <small class="my-auto">01:32 남음</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang2D1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">건조기1</h6>
+                      <small class="my-auto">사용 가능</small>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content" id="somang2-contents">
+              <div id="somang2W1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-warning">&#11044; </span>
+                        수거 미확인
+                      </div>
+                      <button id="somang5W1freeBtn" class="col-md-1 btn btn-primary">수거</button>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang2W2" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-danger">&#11044; </span>
+                        사용 중 (01:32 남음)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang2D1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">상태</div>
+                      <div class="col-md-7"><span class="text-success">&#11044; </span>사용 가능</div>
+                      <button id="somang2D1useForm" class="col-md-1 btn btn-primary">사용</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between text-center">
+              <h6 class="my-auto">1층</h6>
+              <ul class="nav nav-pills" id="somang1" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang1W1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기1</h6>
+                      <small class="my-auto">수거 미확인</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang1W2" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">세탁기2</h6>
+                      <small class="my-auto">01:32 남음</small>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-flex justify-content-between" href="#somang1D1" data-toggle="pill" role="tab">
+                    <div class="justify-content-center text-center">
+                      <h6 class="my-auto">건조기1</h6>
+                      <small class="my-auto">사용 가능</small>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content" id="somang1-contents">
+              <div id="somang1W1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-warning">&#11044; </span>
+                        수거 미확인
+                      </div>
+                      <button id="somang1W1freeBtn" class="col-md-1 btn btn-primary">수거</button>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang5W2" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        상태
+                      </div>
+                      <div class="col-md-7">
+                        <span class="text-danger">&#11044; </span>
+                        사용 중 (01:32 남음)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        마지막 사용자
+                      </div>
+                      <div class="col-md-7">
+                        20190480 이원준 (소망관 325호)
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        시작 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 3:40:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        예정 종료 시간
+                      </div>
+                      <div class="col-md-7">
+                        2019. 5. 16. 오후 5:23:42
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">
+                        메모
+                      </div>
+                      <div class="col-md-7">
+                        세탁기 앞 파란 바구니에 넣어주세요.
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div id="somang5D1" class="list-tab-pane tab-pane fade" role="tabpanel">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-4">상태</div>
+                      <div class="col-md-7"><span class="text-success">&#11044; </span>사용 가능</div>
+                      <button id="somang5D1useForm" class="col-md-1 btn btn-primary">사용</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Sign Up</title>
+
+    <link href="common.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light sparcs-nav proj-nav">
+      <a class="navbar-brand" href="#">Untitled</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+    <main role="main" class="container sparcs-main">
+      <form class="form-signin">
+        <div class="text-center mb-4">
+          <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+        </div>
+
+        <div class="form-label-group">
+          <input type="text" id="user_id" class="form-control" placeholder="Student ID" required autofocus>
+          <label for="user_id">Student ID</label>
+        </div>
+
+        <div class="form-label-group">
+          <input type="password" id="password" class="form-control" placeholder="Password" required>
+          <label for="password">Password</label>
+        </div>
+
+        <div class="form-label-group">
+          <input type="text" id="name" class="form-control" placeholder="Name" required>
+          <label for="name">Name</label>
+        </div>
+
+        <div class="form-label-group d-flex">
+          <select id="dorm_name" class="form-control col-6" placeholder="Dormitory" required>
+              <option selected hidden></option>
+              <option>소망관</option>
+          </select>
+          <label for="dorm_name">Dormitory</label>
+          <input type="number" id="room_no" class="form-control col-6" placeholder="Room no." required>
+          <label for="room_no" class="label-right">Room no.</label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" onclick="submitForm(event)">Sign Up</button>
+      </form>
+    </main>
+  </body>
+</html>
