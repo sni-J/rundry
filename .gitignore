@@ -133,3 +133,6 @@ $RECYCLE.BIN/
 
 # sniperJ edit: too much node_modules
 node_modules
+
+# nohup
+nohup.out
