@@ -26,41 +26,37 @@ $("form").on("click","button[id$='cancelBtn']", (e)=> {
   //axios 사용 중 -> 사용 가능
 });
 
-const userPromise = (infos) => new Promise((resolve, reject) => {
-  axios.get('/api/user')
-  .then((res)=>{
+const userPromise = async (infos) => {
+  try{
+    const res = await axios.get('/api/user')
     infos.userInfo = res.data;
-    resolve(infos);
-  })
-  .catch((err)=>{
-    reject("user: "+ err);
-  })
-});
+    return infos;
+  }catch(e){
+    console.log("userPromise: "+e);
+  }
+}
 
-const dormPromise = (infos) => new Promise((resolve, reject) => {
-  axios.get('/api/dormitory/'+ infos.userInfo.dorm)
-  .then((res) => {
+const dormPromise = async(infos) => {
+  try{
+    const res = await axios.get('/api/dormitory/' + infos.userInfo.dorm)
     infos.dormInfo = res.data;
-    resolve(infos);
-  })
-  .catch((err)=>{
-    reject("dorm: "+ err);
-  })
-});
+    return infos;
+  }catch(e){
+    console.log("dormPromise: "+e);
+  }
+}
 
-const infoPromise = (infos) => new Promise((resolve, reject) => {
-  axios.get('/api/user/'+infos.userInfo.user_id)
-  .then((res)=>{
-    // console.log(res.data);
+const infoPromise = async (infos) => {
+  try{
+    const res = await axios.get('/api/user/'+infos.userInfo.user_id)
     infos.totalInfo = res.data;
-    resolve(infos);
-  })
-  .catch((err)=>{
-    reject("info: " + err);
-  })
-})
+    return infos;
+  }catch(e){
+    console.log("infoPromise: "+e);
+  }
+}
 
-const renderResult = (infos) => new Promise((resolve, reject) => {
+const renderResult = async (infos) => {
   try{
     // console.log(infos);
     const { userInfo, dormInfo, totalInfo } = infos;
@@ -332,22 +328,22 @@ const renderResult = (infos) => new Promise((resolve, reject) => {
     // console.log(userInfo);
     // console.log(dormInfo);
     // console.log(totalInfo);
-    resolve("Done");
+    return;
   }catch(e){
-    reject(e.toString());
+    console.log("renderResult: "+e);
   }
-})
+}
 
 
 const updateInfo = async () => {
   try{
-    const info1 = await userPromise({userInfo: "", dormInfo: "", totalInfo: ""});
-    const info2 = await dormPromise(info1);
-    const info3 = await infoPromise(info2);
-    await renderResult(info3);
+    var infos = {userInfo: "", dormInfo: "", totalInfo: ""};
+    await userPromise(infos);
+    await dormPromise(infos);
+    await infoPromise(infos);
+    await renderResult(infos);
   }catch(e){
     alert('Rendering Error. Please refresh');
-    console.log(e.toString());
   }
 }
 
