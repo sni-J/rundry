@@ -53,6 +53,9 @@ router.get('/user/:user_id', (req, res) => {
 					historyJSON[machine_id].now.user_name = name;
 					historyJSON[machine_id].now.user_room_no = room_no;
 					// console.log(machine_id, user_id, user, name, room_no, historyJSON[machine_id]);
+				}else{
+					historyJSON[machine_id].now.user_name = "???";
+					historyJSON[machine_id].now.user_room_no = "???";
 				}
 				resolve();
 			})
@@ -124,8 +127,13 @@ router.delete('/history/:machine_id', (req, res) => {
 
 router.post('/history', (req, res) => {
 	const history = new History();
+	const notme = req.body.notme;
+	if(notme){
+		history.user_id = "";
+	}else{
+		history.user_id = req.body.useUserID;
+	}
 	history.id = req.body.useID;
-	history.user_id = req.body.useUserID;
 	history.start_time = req.body.useStartTime;
 	history.sch_end_time = req.body.useEndTime;
 	history.memo = req.body.memo;

@@ -9,6 +9,7 @@ function submitForm(e){
     useStartTime: parseInt(d.getTime()),
     useEndTime: parseInt(d.getTime()) + (parseInt($(`#${useID}Hour`)[0].value)*60+parseInt($(`#${useID}Minute`)[0].value))*60000,
     memo: $(`#${useID}useMemo`)[0].value,
+    notme: $(`#${useID}Check`).is(':checked'),
   })
   .then(updateInfo)
   .catch((err)=>{alert('DB error'); console.log(err);})
@@ -192,12 +193,10 @@ const renderResult = async (infos) => {
                     </span>
                   </div>
                 `;
-              if(userInfo.user_id==totalInfo[machine_id].now.user_id){
-                floorContentsHTML +=
-                `<div class="col-6 col-md-2 my-auto">
+              floorContentsHTML +=
+              `<div class="col-6 col-md-2 my-auto">
                 <button id="${machine_id}freeBtn" class="btn btn-primary btn-block">Comfirm Pickup</button>
-                </div>`;
-              }
+              </div>`;
               floorContentsHTML += "</div></li>"
               floorContentsHTML +=
                 `
@@ -249,10 +248,14 @@ const renderResult = async (infos) => {
                 <li id="${machine_id}TimeLi" class="list-group-item">
                   <div class="row">
                     <div class="col-md-4 my-auto">Required Time</div>
-                    <div class="col-12 col-md-6 my-auto d-flex">
+                    <div class="col-8 col-md-6 my-auto d-flex">
                       <input type="number" class="form-control input-sm" id="${machine_id}Hour"></input>
                       <span class="mx-1 my-auto">:</span>
                       <input type="number" class="form-control input-sm" id="${machine_id}Minute"></input>
+                    </div>
+                    <div class="col-4 col-md-2 my-auto custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="${machine_id}Check" name="${machine_id}CheckNotMe"></input>
+                      <label class="my-auto custom-control-label" for="${machine_id}Check">Not me</label>
                     </div>
                   </div>
                 </li>
