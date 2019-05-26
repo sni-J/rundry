@@ -3,13 +3,24 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "express": "^4.16.4",
-    "mongoose": "^5.5.8"
-  }
+    "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.5.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sni-J/rundry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sni-J/rundry/issues"
+  },
+  "homepage": "https://github.com/sni-J/rundry#readme",
+  "description": ""
 }
