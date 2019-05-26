@@ -658,3 +658,41 @@
 2019-05-25T22:01:41.460+0000 I NETWORK  [conn79] received client metadata from 127.0.0.1:42358 conn79: { driver: { name: "nodejs", version: "3.2.4" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.4.0-139-generic" }, platform: "Node.js v10.15.3, LE, mongodb-core: 3.2.4" }
 2019-05-25T23:00:50.183+0000 I NETWORK  [conn76] end connection 127.0.0.1:41958 (1 connection now open)
 2019-05-25T23:00:55.282+0000 I NETWORK  [conn79] end connection 127.0.0.1:42358 (0 connections now open)
+2019-05-26T05:39:51.037+0000 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten] MongoDB starting : pid=146 port=27017 dbpath=/data/db 64-bit host=96eea4004f5b
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten] db version v4.0.9
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten] git version: fc525e2d9b0e4bceff5c2201457e564362909765
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2g  1 Mar 2016
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten] modules: none
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten] build environment:
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten]     distmod: ubuntu1604
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten]     distarch: x86_64
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-05-26T05:39:51.041+0000 I CONTROL  [initandlisten] options: {}
+2019-05-26T05:39:51.041+0000 W STORAGE  [initandlisten] Detected unclean shutdown - /data/db/mongod.lock is not empty.
+2019-05-26T05:39:51.041+0000 I STORAGE  [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2019-05-26T05:39:51.041+0000 W STORAGE  [initandlisten] Recovering data from the last clean checkpoint.
+2019-05-26T05:39:51.041+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=7506M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2019-05-26T05:39:52.135+0000 I STORAGE  [initandlisten] WiredTiger message [1558849192:135580][146:0x7f3fecf40a80], txn-recover: Main recovery loop: starting at 5/377344 to 6/256
+2019-05-26T05:39:52.135+0000 I STORAGE  [initandlisten] WiredTiger message [1558849192:135973][146:0x7f3fecf40a80], txn-recover: Recovering log 5 through 6
+2019-05-26T05:39:52.249+0000 I STORAGE  [initandlisten] WiredTiger message [1558849192:249296][146:0x7f3fecf40a80], txn-recover: Recovering log 6 through 6
+2019-05-26T05:39:52.306+0000 I STORAGE  [initandlisten] WiredTiger message [1558849192:306258][146:0x7f3fecf40a80], txn-recover: Set global recovery timestamp: 0
+2019-05-26T05:39:52.686+0000 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] 
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] 
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2019-05-26T05:39:52.752+0000 I CONTROL  [initandlisten] 
+2019-05-26T05:39:52.780+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+2019-05-26T05:39:52.781+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+2019-05-26T05:39:53.015+0000 I FTDC     [ftdc] Unclean full-time diagnostic data capture shutdown detected, found interim file, some metrics may have been lost. OK
+2019-05-26T05:39:55.825+0000 I NETWORK  [listener] connection accepted from 127.0.0.1:45598 #1 (1 connection now open)
+2019-05-26T05:39:55.829+0000 I NETWORK  [conn1] received client metadata from 127.0.0.1:45598 conn1: { driver: { name: "nodejs", version: "3.2.4" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.4.0-139-generic" }, platform: "Node.js v10.15.3, LE, mongodb-core: 3.2.4" }
+2019-05-26T05:50:25.633+0000 I NETWORK  [conn1] end connection 127.0.0.1:45598 (0 connections now open)

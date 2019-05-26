@@ -129,3 +129,10 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,linux,windows
+
+
+# sniperJ edit: too much node_modules
+node_modules
+
+# itself
+.gitignore
