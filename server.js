@@ -5,9 +5,11 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 const api = require('./api/api');
+const auth = require('./api/auth');
 
 const History = require('./models/History');
 const User = require('./models/User');
+const Dormitory = require('./models/Dormitory');
 const mongoose = require('mongoose');
 const db = mongoose.connection;
 
@@ -16,7 +18,7 @@ db.once('open', () => {
 	console.log('DB connection good.');
 });
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/newbie_project", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost/newbie_project", {useNewUrlParser: true, useFindAndModify: false});
 
 app.use(express.static('static/views'))
 app.use('/api', api);

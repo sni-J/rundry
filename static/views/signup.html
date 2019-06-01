@@ -8,6 +8,8 @@
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Sign Up</title>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/common.js"></script>
     <link href="/css/common.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,7 +18,14 @@
   <body class="d-flex flex-column h-100">
     <header>
       <nav class="navbar navbar-expand-md navbar-light sparcs-nav proj-nav">
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand" href="/main"></a>
+        <span></span>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-collapse sparcs-collapse">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+          </div>
+        </div>
       </nav>
     </header>
 
@@ -54,7 +63,7 @@
         <button class="btn btn-lg btn-primary btn-block" onclick="submitForm(event)">Sign Up</button>
       </form>
     </main>
-    
+
     <footer class="footer mt-auto py-0">
       <nav class="navbar navbar-expand-md navbar-light sparcs-footer proj-footer">
         <div class="navbar-collapse sparcs-footer-collapse" id="footerCollapse">

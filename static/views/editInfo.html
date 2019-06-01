@@ -8,6 +8,8 @@
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Edit Account Information</title>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/common.js"></script>
     <link href="/css/common.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -21,20 +23,22 @@
           <span class="">&#9776;</span>
         </button>
         <span></span>
-        <div class="collapse navbar-collapse sparcs-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active sparcs-nav-item">
-              <a class="sparcs-nav-link" href="/main">세탁기/건조기 상태<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item sparcs-nav-item">
-              <a class="sparcs-nav-link" href="/editInfo">정보 수정</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item sparcs-nav-item">
-              <a class="sparcs-nav-link" href="#">이원준</a>
-            </li>
-          </ul>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-collapse sparcs-collapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active sparcs-nav-item">
+                <a class="sparcs-nav-link" href="/main">Washer/Drier<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item sparcs-nav-item">
+                <a class="sparcs-nav-link" href="/editInfo">Account Info</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item sparcs-nav-item">
+                <a class="sparcs-nav-link" href="logout()" id="user_name"></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
@@ -71,13 +75,13 @@
         </div>
 
         <div class="form-label-group d-flex">
-          <select id="dorm_name" class="form-control col-6" placeholder="Dormitory" required>
-              <option hidden></option>
-              <option id="somang">소망관</option>
-          </select>
-          <label for="dorm_name">Dormitory</label>
-          <input type="number" id="room_no" class="form-control col-6" placeholder="Room no." required>
-          <label for="room_no" class="label-right">Room no.</label>
+            <select id="dorm_name" class="form-control col-6" placeholder="Dormitory" required>
+                <option hidden></option>
+                <!-- <option id="somang">소망관</option> -->
+            </select>
+            <label for="dorm_name">Dormitory</label>
+            <input type="number" id="room_no" class="form-control col-6" placeholder="Room no." required>
+            <label for="room_no" class="label-right">Room no.</label>
         </div>
 
         <button class="btn btn-lg btn-primary btn-block" onclick="submitForm(event)">Save</button>
