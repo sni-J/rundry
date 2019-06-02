@@ -1,5 +1,4 @@
-const EngToKo = {"somang": "소망관"};
-const KoToEng = {"소망관": "somang"};
+const EngToKo = {"somang": "소망관", "sarang": "사랑관", "seongsil":"성실관"};
 
 const logout = () => {
   if(confirm("Log out?")){

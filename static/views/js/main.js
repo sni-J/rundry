@@ -10,6 +10,11 @@ function submitForm(e){
   e.preventDefault();
   var d = new Date();
   var useID = e.target.id.split("Submit")[0];
+  let success = true;
+  $("input").removeClass('input-danger');
+  if($(`#${useID}Hour`)[0].value==""){$(`#${useID}Hour`).addClass('input-danger'); success=false;}
+  if($(`#${useID}Minute`)[0].value==""){$(`#${useID}Minute`).addClass('input-danger'); success=false;}
+  if(!success){return;}
   tokenAxios.post('/api/history',{
     useID: useID,
     useUserID: $("#useUserID")[0].value,
@@ -19,7 +24,7 @@ function submitForm(e){
     notme: $(`#${useID}Check`).is(':checked'),
   })
   .then(updateInfo)
-  .catch((err)=>{alert('DB error'); console.log(err);})
+  .catch((err)=>{alert(err.response.data); console.log(err);})
 }
 
 $("form").on("click", "button[id$='freeBtn']", (e)=> {
@@ -46,7 +51,6 @@ $("form").on("click","button[id$='cancelBtn']", (e)=> {
 const userPromise = async (infos) => {
   try{
     const res = await tokenAxios.get('/api/auth/user');
-    console.log(res.data);
     infos.userInfo = res.data;
     if(res.data.user_id == -1) {
       infos.status = -1;
@@ -71,7 +75,6 @@ const loginCheckPromise = async (infos) => {
 const dormPromise = async(infos) => {
   try{
     const res = await axios.get('/api/dormitory/' + infos.userInfo.dorm)
-    console.log(res.data);
     infos.dormInfo = res.data;
     return infos;
   }catch(e){
@@ -82,7 +85,6 @@ const dormPromise = async(infos) => {
 const infoPromise = async (infos) => {
   try{
     const res = await axios.get('/api/user/'+infos.userInfo.user_id)
-    console.log(res.data);
     infos.totalInfo = res.data;
     return infos;
   }catch(e){
@@ -141,7 +143,7 @@ const renderResult = async (infos) => {
               `;
 
             const leftHour = parseInt(new Date(Math.max(0,new Date(totalInfo[machine_id].now.sch_end_time)-new Date()))/3600000);
-            const leftMin = parseInt(new Date(Math.max(0,new Date(totalInfo[machine_id].now.sch_end_time)-new Date()))/60000)-leftHour*60;
+            const leftMin = parseInt(new Date(Math.max(0,new Date(totalInfo[machine_id].now.sch_end_time)-new Date()+60000))/60000)-leftHour*60;
 
             switch(totalInfo[machine_id].status){
               case "Using":
@@ -152,7 +154,7 @@ const renderResult = async (infos) => {
                     <div class="col-md-4 my-auto">
                       Time Left
                     </div>
-                    <div class="col-6 my-auto">
+                    <div class="col-5 my-auto">
                       <span class="timetext" endtime="${totalInfo[machine_id].now.sch_end_time}">
                         ${leftHour.toString().padStart(2, "0")}
                         :
@@ -160,9 +162,9 @@ const renderResult = async (infos) => {
                       </span>
                     </div>
                   `;
-                if(userInfo.user_id==totalInfo[machine_id].now.user_id && leftHour + leftMin > 0){
+                if(userInfo.user_id==totalInfo[machine_id].now.user_id && leftHour + leftMin >= 0){
                   floorContentsHTML +=
-                  `<div class="col-6 col-md-2 my-auto">
+                  `<div class="col-7 col-md-3 my-auto">
                     <button id="${machine_id}cancelBtn" class="btn btn-danger btn-block">Cancel</button>
                   </div>`;
                 }
@@ -228,7 +230,7 @@ const renderResult = async (infos) => {
                       </div>
                     `;
                   floorContentsHTML +=
-                  `<div class="col-6 col-md-3 my-auto">
+                  `<div class="col-7 col-md-3 my-auto">
                     <button id="${machine_id}freeBtn" class="btn btn-primary btn-block">Comfirm Pickup</button>
                   </div>`;
                   floorContentsHTML += "</div></li>"
@@ -283,9 +285,9 @@ const renderResult = async (infos) => {
                       <div class="row">
                         <div class="col-md-4 my-auto">Required Time</div>
                         <div class="col-8 col-md-6 my-auto d-flex">
-                          <input type="number" class="form-control input-sm" id="${machine_id}Hour"></input>
+                          <input type="number" class="form-control input-sm" id="${machine_id}Hour" required></input>
                           <span class="mx-1 my-auto">:</span>
-                          <input type="number" class="form-control input-sm" id="${machine_id}Minute"></input>
+                          <input type="number" class="form-control input-sm" id="${machine_id}Minute" required></input>
                         </div>
                         <div class="col-4 col-md-2 my-auto custom-checkbox">
                           <input type="checkbox" class="custom-control-input" id="${machine_id}Check" name="${machine_id}CheckNotMe"></input>
@@ -387,3 +389,22 @@ const updateInfo = async () => {
 }
 
 updateInfo();
+
+setInterval(()=>{
+  const timetexts = $(".timetext");
+  for(let i=0;i<timetexts.length;i++){
+    let time = timetexts[i].innerHTML.split(":");
+    let hour = parseInt(time[0]);
+    let minute = parseInt(time[1]);
+    let alreadyZero = hour==0 && minute==0;
+    if(minute == 0){
+      if(hour != 0){
+        hour -= 1;
+        minute += 60;
+      }
+    }
+    minute -= 1;
+    if(!alreadyZero && hour*60+minute<=0){ setTimeout(()=>{updateInfo();},60000); }
+    timetexts[i].innerHTML = hour.toString().padStart(2, "0") +" : "+minute.toString().padStart(2, "0");
+  }
+}, 1000*60);

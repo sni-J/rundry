@@ -59,6 +59,10 @@ body{
     padding-left: 34px!important;
     margin: 0!important;
   }
+
+  .sparcs-collapse .navbar-nav{
+    padding: 0!important;
+  }
 }
 
 .sparcs-nav-item:not(:last-child) {
@@ -124,6 +128,10 @@ body{
     padding-top: 16px!important;
     margin: 0px!important;
   }
+
+  .sparcs-footer-collapse .navbar-nav{
+    padding: 0!important;
+  }
 }
 
 .proj-nav {
@@ -148,6 +156,13 @@ input[type = "number"] {
   padding-top: 15px;
 }
 
+.input-danger{
+  border-color: #dc3545!important;
+}
+
+.input-danger:focus{
+  box-shadow: 0 0 0 0.2rem rgba(255,0,0,.25)!important;
+}
 
 .form-signin {
   width: 100%;

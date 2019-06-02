@@ -85,7 +85,6 @@ router.post('/signin', (req, res) => {
   }
 
   const onError = (error) => {
-    console.log(error);
     res.status(403).json({
       message: error.message,
     })
@@ -108,7 +107,6 @@ router.post('/signup', (req, res) => {
   }
 
   const onError = (error) => {
-    console.log(error);
     res.status(403).json({
       message: error.message,
     })

@@ -11,8 +11,19 @@ const submitForm = (e) => {
     $(location).attr('href', '/main');
   })
   .catch((err)=>{
-    console.log(err);
     $("#message")[0].removeAttribute('hidden');
-    $("#message")[0].innerHTML = err.response.data.message;
+    $("input").removeClass("input-danger");
+    const errMsg = err.response.data.message;
+    $("#message")[0].innerHTML = errMsg;
+    switch(errMsg){
+      case "User not exists":
+        $("#user_id").addClass("input-danger");
+        break;
+      case "Wrong password":
+        $("#password").addClass("input-danger");
+        break;
+      default:
+        console.log(errMsg);
+    }
   })
 }

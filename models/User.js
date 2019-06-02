@@ -27,14 +27,17 @@ userSchema.statics.create = function (user_id, password, name, dorm, room_no){
 }
 
 userSchema.statics.update = function (user, changed){
-  const encrypted = crypto.createHmac('sha1', config.secret)
-                          .update(changed.password)
-                          .digest('base64');
-
   for(info in changed) {
     user[info]=changed[info];
   }
-  user.password = encrypted;
+
+  if(changed.password){
+    const encrypted = crypto.createHmac('sha1', config.secret)
+    .update(changed.password)
+    .digest('base64');
+
+    user.password = encrypted;
+  }
 
   return user.save();
 }
