@@ -35,6 +35,10 @@
           <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
         </div>
 
+        <div class="text-right mb-0">
+          <h1 class="h6 mb-1 font-weight-normal text-danger" hidden id="message">Error Msg</h1>
+        </div>
+
         <div class="form-label-group">
           <input type="text" id="user_id" class="form-control" placeholder="Student ID" required autofocus>
           <label for="user_id">Student ID</label>
@@ -46,6 +50,11 @@
         </div>
 
         <div class="form-label-group">
+          <input type="password" id="passwordCheck" class="form-control" placeholder="Check Password" required>
+          <label for="passwordCheck">Check Password</label>
+        </div>
+
+        <div class="form-label-group">
           <input type="text" id="name" class="form-control" placeholder="Name" required>
           <label for="name">Name</label>
         </div>
@@ -53,7 +62,7 @@
         <div class="form-label-group d-flex">
           <select id="dorm_name" class="form-control col-6" placeholder="Dormitory" required>
               <option hidden></option>
-              <option id="somang">소망관</option>
+              <option value="somang">소망관</option>
           </select>
           <label for="dorm_name">Dormitory</label>
           <input type="number" id="room_no" class="form-control col-6" placeholder="Room no." required>
@@ -61,6 +70,10 @@
         </div>
 
         <button class="btn btn-lg btn-primary btn-block" onclick="submitForm(event)">Sign Up</button>
+
+        <div class="signup">
+          <p>Already has account? <a href="/signin">Sign In</a></p>
+        </div>
       </form>
     </main>
 

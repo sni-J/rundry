@@ -3,13 +3,9 @@ const History = require('../models/History');
 const User = require('../models/User');
 const Dormitory = require('../models/Dormitory');
 const mongoose = require('mongoose');
+const auth = require('./auth');
 
 const router = express.Router();
-
-router.get('/user', util.isLoggedin, (req, res) => {
-	const data = {"user_id":-1};
-	return res.json({"user_id": data.user_id, "name": data.name, "dorm": data.dorm, "room_no": data.room_no});
-})
 
 router.get('/user/:user_id', async (req, res) => {
    const { user_id } = req.params;
@@ -26,10 +22,9 @@ router.get('/user/:user_id', async (req, res) => {
          const result = await History.find({id: machine_id});
          historyJSON[machine_id].status = "Available";
          result.forEach((history)=>{
-            const hist = {user_id: history.user_id, start_time: history.start_time, sch_end_time: history.sch_end_time, pickup: history.pickup, memo:history.memo};
-            historyJSON[machine_id].history.push(hist);
+            historyJSON[machine_id].history.push(history);
             if(historyJSON[machine_id].now.start_time<history.start_time && !history.pickup){
-               historyJSON[machine_id].now = hist;
+               historyJSON[machine_id].now = history;
                if(historyJSON[machine_id].now.sch_end_time < new Date()){
                   historyJSON[machine_id].status = "Pickup Unconfirmed";
                }else{
@@ -37,18 +32,19 @@ router.get('/user/:user_id', async (req, res) => {
                }
             }
          })
+				 return;
       } catch (err) {
          throw new Error('db error finding history');
       }
    }
    const addUser = async (user_id, machine_id) => {
       try {
-         const user = await User.find({user_id: user_id});
-         if(user[0]){
-            const { name, room_no } = user[0];
-            historyJSON[machine_id].now.user_name = name;
-            historyJSON[machine_id].now.user_room_no = room_no;
-         }
+       	const user = await User.find({user_id: user_id});
+     		if(user[0]){
+	        const { name, room_no } = user[0];
+	        historyJSON[machine_id].now.user_name = name;
+	        historyJSON[machine_id].now.user_room_no = room_no;
+     		}
       } catch (err) {
          throw new Error('db error finding user')
       }
@@ -67,18 +63,21 @@ router.get('/user/:user_id', async (req, res) => {
 	}
 	try {
 		 await Promise.all(promises);
-	} catch(e){
+	} catch(err){
 		 console.log(`/user/:user_id/dorm raised an error ${e} \n where user_id is ${user_id}`);
+		 return res.status(500).end(err.toString());
 	}
-	 promises=[];
+ 	promises=[];
 	for(let machine_id in historyJSON){
 		let user_id = historyJSON[machine_id].now.user_id||"";
 		promises.push(addUser(user_id, machine_id));
 	}
 	try {
 		 await Promise.all(promises);
+		 return res.status(200).json(historyJSON);
 	} catch(e){
 		 console.log(`/user/:user_id/dorm raised an error ${e} \n where user_id is ${user_id}`);
+		 return res.status(500).end(err.toString());
 	}
 })
 
@@ -110,7 +109,6 @@ router.post('/history', (req, res) => {
 	history.pickup = false;
 	history.save((err, result) => {
 		if (err) return res.status(500).end('DB error');
-		console.log(result);
 		return res.sendStatus(200);
 	})
 });
@@ -120,17 +118,15 @@ router.put('/history', (req, res) => {
 	console.log(_id);
 	History.findOneAndUpdate({ _id }, { pickup }, (err, result) => {
 		if (err) return res.status(500).end('DB error');
-		console.log(result);
 		return res.sendStatus(200);
 	})
 })
 
 router.delete('/history/:_id', (req, res) => {
 	const { _id } = req.params;
-	console.log(_id);
-	History.findOneAndDelete({ _id }, (err, result) => {
+	History.findOneAndDelete({ _id, user_id: req.decoded.user_id }, (err, result) => {
 		if (err) return res.status(500).end('DB error');
-		console.log(result);
+		if(result.length==0) return res.status(401).end('Unauthorized');
 		return res.sendStatus(200);
 	})
 })
@@ -138,7 +134,6 @@ router.delete('/history/:_id', (req, res) => {
 router.post('/user', (req, res) => {
 	User.find({user_id: req.body.user_id})
 	.then((user)=>{
-		console.log(user, user.length);
 		if(user.length!=0) return res.status(200).end('User already exists');
 		else{
 			const user = new User();
@@ -149,23 +144,11 @@ router.post('/user', (req, res) => {
 			user.room_no = req.body.room_no;
 			user.save((err, result) => {
 				if (err) return res.status(500).end('DB error');
-				console.log(result);
 				return res.sendStatus(200);
 			})
 		}
 	})
 });
-
-router.put('/user', (req, res) => {
-	const { user_id, oldPassword, newPassword, newPasswordCheck, name, dorm_name, room_no } = req.body;
-	// user validity check
-	// should password be passed in secret?
-	User.findOneAndUpdate({ user_id }, { oldPassword, newPassword, newPasswordCheck, name, dorm_name, room_no }, (err, result) => {
-		if (err) return res.status(500).end('DB error');
-		console.log(result);
-		return res.sendStatus(200);
-	})
-})
 
 // router.delete('/user/:user_id', (req, res) => {
 // 	const { user_id } = req.params;

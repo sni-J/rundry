@@ -1,8 +1,16 @@
+const tokenAxios = axios.create({
+  headers:{
+    'x-access-token': window.localStorage.getItem('token'),
+  }
+});
+
+const token = window.localStorage.getItem('token');
+
 function submitForm(e){
   e.preventDefault();
   var d = new Date();
   var useID = e.target.id.split("Submit")[0];
-  axios.post('/api/history',{
+  tokenAxios.post('/api/history',{
     useID: useID,
     useUserID: $("#useUserID")[0].value,
     useStartTime: parseInt(d.getTime()),
@@ -17,7 +25,7 @@ function submitForm(e){
 $("form").on("click", "button[id$='freeBtn']", (e)=> {
   e.preventDefault();
   var useID = e.target.id.split("freeBtn")[0];
-  axios.put('/api/history', {
+  tokenAxios.put('/api/history', {
     _id: $(`#${useID}NowHistoryId`)[0].value,
     pickup: true,
   })
@@ -29,7 +37,7 @@ $("form").on("click","button[id$='cancelBtn']", (e)=> {
   e.preventDefault();
   if(confirm("Cancel?")){
     var useID = e.target.id.split("cancelBtn")[0];
-    axios.delete('/api/history/'+$(`#${useID}NowHistoryId`)[0].value)
+    tokenAxios.delete('/api/history/'+$(`#${useID}NowHistoryId`)[0].value)
     .then(updateInfo)
     .catch((err)=>{alert('DB error'); console.log(err);})
   }
@@ -37,20 +45,33 @@ $("form").on("click","button[id$='cancelBtn']", (e)=> {
 
 const userPromise = async (infos) => {
   try{
-    const res = await axios.get('/api/user')
+    const res = await tokenAxios.get('/api/auth/user');
+    console.log(res.data);
     infos.userInfo = res.data;
-    if(res.data == -1) {
-      return -1;
+    if(res.data.user_id == -1) {
+      infos.status = -1;
     }
     return infos;
   }catch(e){
     console.log("userPromise: "+e);
+    infos.status = -1;
+    return infos;
+  }
+}
+
+const loginCheckPromise = async (infos) => {
+  if(infos.status == -1){
+    $(location).attr('href', '/signin');
+    return -1;
+  }else{
+    return infos;
   }
 }
 
 const dormPromise = async(infos) => {
   try{
     const res = await axios.get('/api/dormitory/' + infos.userInfo.dorm)
+    console.log(res.data);
     infos.dormInfo = res.data;
     return infos;
   }catch(e){
@@ -61,6 +82,7 @@ const dormPromise = async(infos) => {
 const infoPromise = async (infos) => {
   try{
     const res = await axios.get('/api/user/'+infos.userInfo.user_id)
+    console.log(res.data);
     infos.totalInfo = res.data;
     return infos;
   }catch(e){
@@ -75,7 +97,7 @@ const renderResult = async (infos) => {
 
     $("#user_name")[0].innerHTML = userInfo.user_id+" "+userInfo.name;
     $("#useUserID")[0].value = userInfo.user_id;
-    $("#dorm_name")[0].innerHTML = dormName[userInfo.dorm];
+    $("#dorm_name")[0].innerHTML = EngToKo[userInfo.dorm];
     const dormUL = $("#dormUL")[0];
     dormUL.innerHTML = "";
     for(let f=dormInfo.floor;f>0;f--){
@@ -94,6 +116,7 @@ const renderResult = async (infos) => {
         const floorContents = $(`#${userInfo.dorm}${f}-contents`)[0];
 
         const renderTabContent = (f, index, name) => {
+          var floorContentsHTML= "";
           for(let i=1; i<=index; i++){
             const machine_id = userInfo.dorm+f+name[0]+i;
             $(`#${userInfo.dorm}${f}`)[0].innerHTML +=
@@ -110,7 +133,6 @@ const renderResult = async (infos) => {
                   </a>
                 </li>
               `;
-            var floorContentsHTML= "";
             floorContentsHTML +=
               `
                 <div id="${machine_id}" class="list-tab-pane tab-pane fade" role="tabpanel">
@@ -331,11 +353,11 @@ const renderResult = async (infos) => {
                 floorContentsHTML += "implementing";
                 break;
             }
+            floorContentsHTML +=  `
+                </ul>
+              </div>
+            `;
           }
-          floorContentsHTML +=  `
-          </ul>
-          </div>
-          `;
           return floorContentsHTML;
         }
 
@@ -348,21 +370,12 @@ const renderResult = async (infos) => {
   }
 }
 
-const loginCheckPromise = async (infos) => {
-  if(infos.userInfo.user_id == -1){
-    $(location).attr('href', '/signin');
-    return -1;
-  }else{
-    return infos;
-  }
-}
-
 const updateInfo = async () => {
   try{
     var infos = {userInfo: "", dormInfo: "", totalInfo: ""};
     await userPromise(infos);
     await loginCheckPromise(infos);
-    if(infos.userInfo != -1){
+    if(infos.status != -1){
       await dormPromise(infos);
       await infoPromise(infos);
       await renderResult(infos);

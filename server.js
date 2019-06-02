@@ -6,6 +6,7 @@ app.use(bodyParser.json());
 
 const api = require('./api/api');
 const auth = require('./api/auth');
+const config = require('./config');
 
 const History = require('./models/History');
 const User = require('./models/User');
@@ -22,6 +23,9 @@ mongoose.connect("mongodb://localhost/newbie_project", {useNewUrlParser: true, u
 
 app.use(express.static('static/views'))
 app.use('/api', api);
+app.use('/api/auth', auth);
+
+app.set('jwt-secret', config.secret);
 
 app.get('/', (req, res) => {
 	res.redirect('/main');
